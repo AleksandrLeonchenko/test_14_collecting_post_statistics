@@ -18,5 +18,13 @@
 4. Подготовьте базу данных и осуществите миграции
 5. Запустите приложение: uvicorn main:app --reload
 6. Протестируйте приложение: http://127.0.0.1:8000/docs
+7. Директория src является корневой.
+8. При тестировании использовались страницы: 
+# "https://vk.com/@vkdrs-stati-vkontakte"
+# "https://vk.com/@vkdrs-markirovka-reklamy"
+# "https://vc.ru/life/1070662-keys-franshiza-yaponskogo-restorana-s-pomoshchyu-bota"
+# "https://vc.ru/u/2303995-iprodvinem/1086396-kak-popolnit-reklamnyy-kabinet-v-vk-s-bonusom-podrobnaya-instrukciya"
+9. При аутентификации в поле username нужно ввести email, указанный при регистрации.
+
 
 
