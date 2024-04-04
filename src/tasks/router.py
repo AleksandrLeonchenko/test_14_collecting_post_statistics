@@ -15,6 +15,16 @@ router = APIRouter(prefix="/views")
 
 
 async def process_link_with_timeout(link):
+    """
+     Обрабатывает ссылку с тайм-аутом.
+
+     Args:
+         link (str): Ссылка для обработки.
+
+     Raises:
+         asyncio.TimeoutError: Выбрасывается в случае истечения времени ожидания.
+
+     """
     try:
         await asyncio.wait_for(views_count(link), timeout=5)
         print(f"Task for link completed successfully.")
@@ -28,6 +38,17 @@ async def process_link_with_timeout(link):
 
 @router.post("/process_links/")
 async def process_links(links_request: LinksRequest, background_tasks: BackgroundTasks):
+    """
+    Принимает список ссылок для обработки и добавляет их в фоновые задачи.
+
+    Args:
+        links_request (LinksRequest): Объект запроса, содержащий список ссылок.
+        background_tasks (BackgroundTasks): Объект для добавления фоновых задач.
+
+    Returns:
+        dict: Сообщение о полученных ссылках.
+
+    """
     links = links_request.links
 
     for link in links:
@@ -39,7 +60,13 @@ async def process_links(links_request: LinksRequest, background_tasks: Backgroun
 
 
 @router.get("/last_tasks/")
-async def get_last_tasks():
+async def get_last_tasks() -> list:
+    """
+    Получает последние 10 записей из таблицы задач.
+
+    Returns:
+        list: Список объектов модели задач, представляющих последние 10 записей из таблицы задач.
+    """
     async with AsyncSession(engine) as session:
         async with session.begin():
             # Выбираем последние 10 записей из таблицы task

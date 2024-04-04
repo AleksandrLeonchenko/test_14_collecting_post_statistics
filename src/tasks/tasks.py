@@ -13,6 +13,16 @@ from .models import task
 
 
 async def parser(link: str):
+    """
+    Асинхронная функция для разбора веб-страницы и извлечения количества просмотров.
+
+    Args:
+        link (str): Ссылка на веб-страницу для анализа.
+
+    Returns:
+        dict: Словарь с данными о ссылке, статусе и количестве просмотров.
+
+    """
     status = 2
     print('Задача выполняется: ', link)
     headers = {
@@ -42,6 +52,14 @@ async def parser(link: str):
 
 
 async def views_count(link: str, session: AsyncSession = Depends(get_async_session)):
+    """
+    Асинхронная функция для подсчета просмотров и записи результатов в базу данных.
+
+    Args:
+        link (str): Ссылка на веб-страницу для анализа.
+        session (AsyncSession): Асинхронная сессия для взаимодействия с базой данных.
+
+    """
     result = await parser(link)
 
     link = result['link']

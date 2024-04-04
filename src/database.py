@@ -22,6 +22,12 @@ async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit
 #         yield session
 
 async def get_async_session() -> AsyncSession:
+    """
+    Функция для создания асинхронной сессии для работы с базой данных.
+
+    Returns:
+        AsyncSession: Асинхронная сессия для взаимодействия с базой данных.
+    """
     async with async_session_maker() as session:
         return session
 
